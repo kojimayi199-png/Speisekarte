@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hähnchen Grillmobil - Menü</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcf8f2;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            max-width: 450px;
+            width: 100%;
+            border-top: 8px solid #ff6b00;
+        }
+        .text-center { text-align: center; }
+        h1 { font-size: 26px; margin-bottom: 5px; color: #ff6b00; text-transform: uppercase; }
+        .subtitle { font-size: 14px; color: #666; margin-bottom: 25px; }
+        
+        /* Sprach-Buttons */
+        .lang-button {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+        .lang-button:hover {
+            background: #fff3e6;
+            border-color: #ff6b00;
+            transform: translateY(-2px);
+        }
+        .flag { font-size: 24px; margin-right: 15px; }
+        
+        .arabic-btn { direction: rtl; justify-content: space-between; }
+        .arabic-btn .flag { margin-right: 0; margin-left: 15px; order: 2; }
+
+        /* Seiten-Steuerung */
+        .menu-page { display: none; }
+        .menu-page.active { display: block; }
+        
+        /* Menü-Struktur */
+        .menu-title { font-size: 26px; color: #ff6b00; margin-bottom: 20px; border-bottom: 2px dashed #ff6b00; padding-bottom: 10px; font-weight: bold; }
+        .category-title { font-size: 18px; color: #ff8c00; margin-top: 20px; margin-bottom: 10px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        .menu-item { display: flex; justify-content: space-between; align-items: baseline; margin: 10px 0; font-size: 16px; }
+        .item-name { font-weight: bold; flex-grow: 1; }
+        .item-dots { flex-grow: 1; border-bottom: 2px dotted #eee; margin: 0 8px; }
+        .item-price { font-weight: bold; color: #ff6b00; white-space: nowrap; }
+        
+        .info-box { background: #fff5eb; padding: 12px; border-radius: 10px; border-left: 4px solid #ff6b00; font-size: 14px; margin-top: 20px; font-weight: bold; }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background: #666;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .back-btn:hover { background: #444; }
+
+        /* RTL für Arabisch */
+        .rtl { direction: rtl; text-align: right; }
+        .rtl .menu-item { flex-direction: row-reverse; }
+        .rtl .info-box { border-left: none; border-right: 4px solid #ff6b00; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- STARTSEITE: SPRACHAUSWAHL -->
+        <div id="selection-page" class="menu-page active text-center">
+            <h1>Hähnchen Grillmobil</h1>
+            <p class="subtitle">Bitte wählen Sie Ihre Sprache<br>Please choose your language</p>
+            
+            <button class="lang-button" onclick="showMenu('en')">
+                <span class="flag">🇬🇧</span> <span>English</span>
+            </button>
+
+            <button class="lang-button" onclick="showMenu('ru')">
+                <span class="flag">🇷🇺</span> <span>Русский</span>
+            </button>
+
+            <button class="lang-button arabic-btn" onclick="showMenu('ar')">
+                <span class="flag">🇸🇦</span> <span>العربية</span>
+            </button>
+        </div>
+
+        <!-- ENGLISCH -->
+        <div id="menu-en" class="menu-page">
+            <div class="menu-title text-center">Menu 🍗</div>
+            
+            <div class="category-title">From the Grill</div>
+            <div class="menu-item"><span class="item-name">Half Chicken</span><span class="item-dots"></span><span class="item-price">5,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Whole Chicken</span><span class="item-dots"></span><span class="item-price">11,30 €</span></div>
+            <div class="menu-item"><span class="item-name">Pork Knuckle</span><span class="item-dots"></span><span class="item-price">7,50 €</span></div>
+            <div class="menu-item"><span class="item-name">Turkey Leg</span><span class="item-dots"></span><span class="item-price">8,00 €</span></div>
+
+            <div class="category-title">Sides</div>
+            <div class="menu-item"><span class="item-name">Bread Roll</span><span class="item-dots"></span><span class="item-price">0,30 €</span></div>
+            <div class="menu-item"><span class="item-name">French Fries</span><span class="item-dots"></span><span class="item-price">3,00 €</span></div>
+
+            <div class="category-title">Salads (250g)</div>
+            <div class="menu-item"><span class="item-name">Cabbage Salad</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Cucumber Salad</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Potato Salad</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Cole Slaw</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Pasta Salad</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Carrot-Apple Salad</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+
+            <div class="category-title">Drinks</div>
+            <div class="menu-item"><span class="item-name">Non-alcoholic Drinks</span><span class="item-dots"></span><span class="item-price">2,50 €</span></div>
+
+            <div class="category-title">Fresh Eggs (Barn)</div>
+            <div class="menu-item"><span class="item-name">6 pack (Size L)</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">10 pack (Size L)</span><span class="item-dots"></span><span class="item-price">3,70 €</span></div>
+
+            <div class="info-box text-center">💳 Card payment now possible!<br>📞 Catering: 0176 32153064</div>
+            <button class="back-btn text-center" onclick="showSelection()">⬅ Back / Zurück</button>
+        </div>
+
+        <!-- RUSSISCH -->
+        <div id="menu-ru" class="menu-page">
+            <div class="menu-title text-center">Меню 🍗</div>
+            
+            <div class="category-title">На гриле</div>
+            <div class="menu-item"><span class="item-name">Половина курицы</span><span class="item-dots"></span><span class="item-price">5,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Целая курица</span><span class="item-dots"></span><span class="item-price">11,30 €</span></div>
+            <div class="menu-item"><span class="item-name">Свиная рулька</span><span class="item-dots"></span><span class="item-price">7,50 €</span></div>
+            <div class="menu-item"><span class="item-name">Индюшачья голень</span><span class="item-dots"></span><span class="item-price">8,00 €</span></div>
+
+            <div class="category-title">Гарниры</div>
+            <div class="menu-item"><span class="item-name">Булочка</span><span class="item-dots"></span><span class="item-price">0,30 €</span></div>
+            <div class="menu-item"><span class="item-name">Картофель фри</span><span class="item-dots"></span><span class="item-price">3,00 €</span></div>
+
+            <div class="category-title">Салаты (250г)</div>
+            <div class="menu-item"><span class="item-name">Салат из белокочанной капусты</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Салат из огурцов</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Картофельный салат</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Коул Слоу</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Салат с макаронами</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">Морковно-яблочный салат</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+
+            <div class="category-title">Напитки</div>
+            <div class="menu-item"><span class="item-name">Безалкогольные напитки</span><span class="item-dots"></span><span class="item-price">2,50 €</span></div>
+
+            <div class="category-title">Свежие яйца (напольное содержание)</div>
+            <div class="info-box text-center">💳 Теперь возможна оплата картой!<br>📞 Кейтеринг: 0176 32153064</div>
+            <button class="back-btn text-center" onclick="showSelection()">⬅ Назад / Zurück</button>
+        </div>
+
+        <!-- ARABISCH -->
+        <div id="menu-ar" class="menu-page rtl">
+            <div class="menu-title text-center">القائمة 🍗</div>
+            
+            <div class="category-title">من الشواية</div>
+            <div class="menu-item"><span class="item-name">نصف دجاجة</span><span class="item-dots"></span><span class="item-price">5,70 €</span></div>
+            <div class="menu-item"><span class="item-name">دجاجة كاملة</span><span class="item-dots"></span><span class="item-price">11,30 €</span></div>
+            <div class="menu-item"><span class="item-name">موزة لحم الخنزير المشوية</span><span class="item-dots"></span><span class="item-price">7,50 €</span></div>
+            <div class="menu-item"><span class="item-name">فخذ ديك رومي</span><span class="item-dots"></span><span class="item-price">8,00 €</span></div>
+
+            <div class="category-title">المقبلات والوجبات الجانبية</div>
+            <div class="menu-item"><span class="item-name">خبز صغير (بروتشين)</span><span class="item-dots"></span><span class="item-price">0,30 €</span></div>
+            <div class="menu-item"><span class="item-name">بطاطس مقلية</span><span class="item-dots"></span><span class="item-price">3,00 €</span></div>
+
+            <div class="category-title">السلطات (٢٥٠ غرام)</div>
+            <div class="menu-item"><span class="item-name">سلطة الملفوف الأبيض</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">سلطة الخيار</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">سلطة البطاطس</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">كول سلو</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">سلطة المعكرونة</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">سلطة الجزر والتفاح</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+
+            <div class="category-title">المشروبات</div>
+            <div class="menu-item"><span class="item-name">مشروبات خالية من الكحول</span><span class="item-dots"></span><span class="item-price">2,50 €</span></div>
+
+            <div class="category-title">بيض طازج (تربية أرضية)</div>
+            <div class="menu-item"><span class="item-name">عبوة ٦ قطع (حجم L)</span><span class="item-dots"></span><span class="item-price">2,70 €</span></div>
+            <div class="menu-item"><span class="item-name">عبوة ١٠ قطع (حجم L)</span><span class="item-dots"></span><span class="item-price">3,70 €</span></div>
+
+            <div class="info-box text-center">💳 الدفع بالبطاقة متاح الآن!<br>📞 خدمة الحفلات (كارتيرنج): 0176 32153064</div>
+            <button class="back-btn text-center" onclick="showSelection()">⬅ عودة / Zurück</button>
+        </div>
+
+    </div>
+
+    <script>
+        function showMenu(lang) {
+            document.querySelectorAll('.menu-page').forEach(page => page.classList.remove('active'));
+            document.getElementById('menu-' + lang).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        function showSelection() {
+            document.querySelectorAll('.menu-page').forEach(page => page.classList.remove('active'));
+            document.getElementById('selection-page').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
